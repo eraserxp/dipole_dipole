@@ -1,3 +1,5 @@
 calculate the dipole-dipole interaction for two polar molecules in electric field
 
 only DC field is implemented
+
+use a fortran subroutine in c++ to calculate the three-j symbols
