@@ -16,11 +16,16 @@ CLIB = -L$(MKLROOT)/lib/intel64  -L/home/pxiang/gsl_icc/lib -L/home/pxiang/boost
 #linking options
 FLAGSLIB = -L$(MKLROOT)/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread -limf
 
-
 SOURCES =  main.cpp 
 
-dd.exe: $(SOURCES) *.hpp iccMake
+dd.exe: $(SOURCES) *.hpp three_j.o iccMake
 	$(CC) $(CFLAGS) $(CINCLUDE)   $< three_j.o /usr/lib64/libg2c.so.0.0.0  $(CLIB) $(FLAGSLIB) -o $@
+
+#compile the fortran code
+three_j.o: three_j.f iccMake
+	g77 -O3 -c -o $@ $<
+
+
 
 
 clean:
